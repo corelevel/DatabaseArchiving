@@ -118,7 +118,7 @@ go
 
 if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_GetTableGroup' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_InsertProcessState as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_GetTableGroup as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_GetTableGroup
