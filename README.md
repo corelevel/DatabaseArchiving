@@ -5,6 +5,7 @@ This PowerShell script can be used for data archiving and data purging.
 Archiving and purging process performed by groups. Each group has a set of tables and settings.
 
 For each group, we have the following settings:
+
 Name - unique group name
 SrcServerName - source server name
 SrcDatabaseName - source database name
