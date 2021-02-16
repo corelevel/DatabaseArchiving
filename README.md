@@ -1,9 +1,9 @@
 # DatabaseArchiving
-PowerShell script can be used for data archiving and data purging. It's automatically creates table script for the destination database (if table not exists) and adding new columns to source. Supports resume after failure.
+PowerShell script can be used for data archiving and data purging. It automatically creates a table script for the destination database (if the table not exists) and if a new column added to the source it adds that column to the destination. Also, the script supports resume after failure.
 
 Archiving and purging process performed by groups. Each group has a set of tables and settings, and each table has its own additional settings.
 
-For each group, we have the following settings:
+For each group following settings exists:
 * *Name* - unique group name
 * *SrcServerName* - source server name
 * *SrcDatabaseName* - source database name
@@ -13,7 +13,7 @@ For each group, we have the following settings:
 * *DstConnectionOptions* - destination connection string options such as ApplicationIntent, Connect Timeout, user name, password, etc
 * *DisableFK* - disable foreign keys before the purge from the source database
 
-For each table in group, we have the following settings:
+For each table in a group following settings exists:
 * *SchemaName* - source table schema name
 * *TableName* - source table name
 * *Active* - process this table or not
@@ -41,3 +41,5 @@ When archiving/purging process starts it creates a state record with the followi
 * *LastPurgedDate* - date of the last successful data purge
 * *RowsPurged* - total rows purged
 * *CompleteDate* - successful completion date
+
+The working database must be created on the source database server. Schema contained in *schema.sql* file.
