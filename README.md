@@ -1,6 +1,13 @@
 # DatabaseArchiving
 PowerShell script can be used for data archiving and data purging. It automatically creates a table script for the destination database (if the table not exists) and if a new column added to the source it adds that column to the destination. Also, the script supports resume after failure.
 
+To install and use:
+* Create working database on the source database server
+* Create database schema with using *schema.sql* file
+* Create group record and fill settings
+* Create table record(s) and fill settings
+* Set *$ArcConnectionString* and *$groupName* variables inside PowerShell script
+
 Archiving and purging process performed by groups. Each group has a set of tables and settings, and each table has its own additional settings.
 
 For each group following settings exists:
@@ -41,5 +48,3 @@ When archiving/purging process starts it creates a state record with the followi
 * *LastPurgedDate* - date of the last successful data purge
 * *RowsPurged* - total rows purged
 * *CompleteDate* - successful completion date
-
-The working database must be created on the source database server. Schema contained in *schema.sql* file.
