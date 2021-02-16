@@ -1,4 +1,5 @@
-# DatabaseArchiving - this PowerShell script can be used for data archiving and data purging.
+# DatabaseArchiving
+PowerShell script can be used for data archiving and data purging. It's automatically creates table script for the destination database (if table not exists) and adding new columns to source. Supports resume after failure.
 
 Archiving and purging process performed by groups. Each group has a set of tables and settings, and each table has its own additional settings.
 
