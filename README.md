@@ -1,5 +1,5 @@
 # DatabaseArchiving
-PowerShell script can be used for data archiving and data purging. It automatically creates a table script for the destination database (if the table not exists) and if a new column added to the source it adds that column to the destination. Also, the script supports resume after failure.
+PowerShell script automatically creates a table script for the destination database (if the table not exists) and if a new column added to the source it adds that column to the destination. Also, the script supports resume after failure.
 
 To install and use:
 * Create working database on the source database server
