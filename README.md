@@ -26,7 +26,7 @@ For each table in a group following settings exists:
 * *Active* - process this table or not
 * *DataCopyBatchSize* - batch size for data copy
 * *KeyCopyBatchSize*	- batch size for keys copy
-* *KeyQuery*	- to select primary keys values from source. For example, for daily archiving, you can use: *select OrderId from dbo.Order where OrderDate >= dateadd(day, -1, cast(getdate() as date)) and OrderDate < cast(getdate() as date)*
+* *KeyQuery*	- to select primary keys values from source. Do not use database name here, only [table_schema].[table_name] as a table name will work. For example, for daily archiving, you can use: *select OrderId from dbo.Order where OrderDate >= dateadd(day, -1, cast(getdate() as date)) and OrderDate < cast(getdate() as date)*
 * *Archive*	- can be archived or not
 * *Purge*	- can be purged or not
 * *PurgeOrder*	- used to get purge sequence to avoid reference integrity errors
