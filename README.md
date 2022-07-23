@@ -31,11 +31,11 @@ For each table in a group following settings exists:
 * *Purge*	- can be purged or not
 * *PurgeOrder*	- used to get purge sequence to avoid reference integrity errors
 * *DelayInterval*	- delay interval between batches in format 'hh:mm:ss'
-* *AlwaysRunCheck* - always check for previously copied records, so that you will not have any errors caused by duplicate records in destination
-* *SrcWorkingTableName* - working table name for source primary keys (computed column)
-* *DstWorkingTableName* - working table name for destination primary keys (computed column)
-* *WorkingTableKeyName* - working table primary key column name (computed column)
-* *WorkingTableFlagName* - 0 - ok, 1 - means row is duplicate and must be skipped (computed column)
+* *AlwaysRunCheck* - always check for previously copied records, help to avoid errors caused by duplicate records in destination
+* *SrcWorkingTableName* - working table name for source primary keys. Read only (computed column)
+* *DstWorkingTableName* - working table name for destination primary keys. Read only (computed column)
+* *WorkingTableKeyName* - working table primary key column name. Read only (computed column)
+* *WorkingTableFlagName* - 0 - ok, 1 - means row is duplicate and must be skipped. Read only (computed column)
 
 When archiving/purging process starts it creates a state record with the following data:
 * *CreateDate* - record create date 
