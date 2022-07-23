@@ -1,7 +1,7 @@
-if not exists (
+if not exists (
 	select	1
 	from	INFORMATION_SCHEMA.TABLES
-	where TABLE_NAME = 'TableGroup' and TABLE_SCHEMA ='dbo' and TABLE_TYPE = 'BASE TABLE')
+	where TABLE_NAME = 'TableGroup' and TABLE_SCHEMA ='dbo' and TABLE_TYPE = 'BASE TABLE')
 begin
 	create table dbo.TableGroup
 	(
@@ -24,10 +24,10 @@ begin
 end
 go
 
-if not exists (
+if not exists (
 	select	1
 	from	INFORMATION_SCHEMA.TABLES
-	where TABLE_NAME = 'SourceTable' and TABLE_SCHEMA ='dbo' and TABLE_TYPE = 'BASE TABLE')
+	where TABLE_NAME = 'SourceTable' and TABLE_SCHEMA ='dbo' and TABLE_TYPE = 'BASE TABLE')
 begin
 	create table dbo.SourceTable
 	(
@@ -66,10 +66,10 @@ begin
 end
 go
 
-if not exists (
+if not exists (
 	select	1
 	from	INFORMATION_SCHEMA.TABLES
-	where TABLE_NAME = 'ProcessState' and TABLE_SCHEMA ='dbo' and TABLE_TYPE = 'BASE TABLE')
+	where TABLE_NAME = 'ProcessState' and TABLE_SCHEMA ='dbo' and TABLE_TYPE = 'BASE TABLE')
 begin
 	create table dbo.ProcessState
 	(
@@ -100,9 +100,9 @@ begin
 end
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_InsertProcessState' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_InsertProcessState' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_InsertProcessState as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_InsertProcessState as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_InsertProcessState
@@ -116,9 +116,9 @@ values (@SourceTableId, getdate())
 select cast(scope_identity() as bigint) ProcessStateId
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_GetTableGroup' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_GetTableGroup' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_GetTableGroup as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_GetTableGroup as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_GetTableGroup
@@ -138,9 +138,9 @@ from	dbo.TableGroup
 where [Name] = @Name
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_GetSourceTable' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_GetSourceTable' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_GetSourceTable as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_GetSourceTable as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_GetSourceTable
@@ -167,9 +167,9 @@ from	dbo.SourceTable
 where Active = 1 and TableGroupId = @TableGroupId
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_GetIncompleteProcessState' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_GetIncompleteProcessState' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_GetIncompleteProcessState as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_GetIncompleteProcessState as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_GetIncompleteProcessState
@@ -192,9 +192,9 @@ where SourceTableId = @SourceTableId and CompleteDate is null
 order by ProcessStateId desc
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_UpdateProcessState' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_UpdateProcessState' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_UpdateProcessState as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_UpdateProcessState as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_UpdateProcessState
@@ -224,9 +224,9 @@ set		KeyCopyDate = isnull(@KeyCopyDate, KeyCopyDate),
 where ProcessStateId = @ProcessStateId
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_GetBulkCopyData' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_GetBulkCopyData' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_GetBulkCopyData as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_GetBulkCopyData as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_GetBulkCopyData
@@ -297,9 +297,9 @@ from	[' + @SrcDatabaseName + '].[' + @SchemaName + '].[' + @TableName + '] so
 exec sp_executesql @Query, N'@DataCopyBatchSize int, @LastArchivedKey int', @DataCopyBatchSize = @DataCopyBatchSize, @LastArchivedKey = @LastArchivedKey
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_PurgeData' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_PurgeData' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_PurgeData as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_PurgeData as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_PurgeData
@@ -356,9 +356,9 @@ select @@rowcount RowsPurgedForBatch'
 exec sp_executesql @Query, N'@DataCopyBatchSize int, @LastPurgedKey int', @DataCopyBatchSize = @DataCopyBatchSize, @LastPurgedKey = @LastPurgedKey
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_UpdateKeyMaxValue' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_UpdateKeyMaxValue' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_UpdateKeyMaxValue as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_UpdateKeyMaxValue as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_UpdateKeyMaxValue
@@ -390,9 +390,9 @@ exec dbo.stp_UpdateProcessState @ProcessStateId = @ProcessStateId, @KeyMaxValue 
 select @KeyMaxValue KeyMaxValue
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_FixLastArchivedKey' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_FixLastArchivedKey' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_FixLastArchivedKey as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_FixLastArchivedKey as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_FixLastArchivedKey
@@ -444,9 +444,9 @@ exec dbo.stp_UpdateProcessState @ProcessStateId = @ProcessStateId, @LastArchived
 select @LastArchivedKey LastArchivedKey
 go
 
-if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_DisableEnableFK' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
+if not exists (select 1 from INFORMATION_SCHEMA.ROUTINES where ROUTINE_NAME = 'stp_DisableEnableFK' and ROUTINE_SCHEMA = 'dbo' and ROUTINE_TYPE = 'PROCEDURE')
 begin
-	exec sp_executesql N'create procedure dbo.stp_DisableEnableFK as select ''Fake procedure to be replaced by alter script'''
+	exec sp_executesql N'create procedure dbo.stp_DisableEnableFK as select ''Fake procedure to be replaced by alter script'''
 end
 go
 alter procedure dbo.stp_DisableEnableFK
